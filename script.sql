@@ -191,41 +191,34 @@ end;
 / -- ===================
 -- Stored Procedures
 -- ===================
-CREATE OR REPLACE PROCEDURE sp_pais_autor_insert (pais pais_autor.pais %TYPE) AS BEGIN
+CREATE OR REPLACE PROCEDURE sp_pais_autor_insert (pais pais_autor.pais%TYPE) AS BEGIN
 INSERT INTO pais_autor (id, pais, creado_en)
 VALUES (0, UPPER(pais), SYSDATE);
 COMMIT;
 END;
-/ EXEC sp_pais_autor_insert('colombia');
-EXEC sp_pais_autor_insert('sudafrica');
-EXEC sp_pais_autor_insert('india');
-EXEC sp_pais_autor_insert('reino unido');
-EXEC sp_pais_autor_insert('españa');
-EXEC sp_pais_autor_insert('irlanda');
-EXEC sp_pais_autor_insert('francia');
-EXEC sp_pais_autor_insert('estados unidos');
-EXEC sp_pais_autor_insert('grecia');
+/ 
 CREATE OR REPLACE PROCEDURE sp_autor_insert (
-        nombre autor.nombre %TYPE,
-        pais autor.id_pais %TYPE
+        nombre autor.nombre%TYPE,
+        pais autor.id_pais%TYPE
     ) AS BEGIN
 INSERT INTO autor (id, nombre, id_pais, creado_en)
 VALUES (0, UPPER(nombre), pais, SYSDATE);
 COMMIT;
 END;
 / 
-EXEC sp_autor_insert('Gabriel Garcia Marquez', 22);
-EXEC sp_autor_insert('J. R. R. Tolkien', 42);
-EXEC sp_autor_insert('George Orwell', 43);
-EXEC sp_autor_insert('Jane Austen', 44);
-EXEC sp_autor_insert('Miguel de Cervantes', 62);
-EXEC sp_autor_insert('Oscar Wilde', 63);
-EXEC sp_autor_insert('Antoine de Saint-Exupéry', 64); 
-EXEC sp_autor_insert('William Shakespeare', 44); 
-EXEC sp_autor_insert('Margaret Mitchell', 65); 
-EXEC sp_autor_insert('Homero', 66); 
-EXEC sp_autor_insert('Lewis Carroll', 44); 
-EXEC sp_autor_insert('Julio Verne', 64); 
+CREATE OR REPLACE PROCEDURE sp_cliente_insert (
+        nombre  cliente.nombre%TYPE,
+        apellido cliente.apellido%TYPE,
+        nacimiento cliente.fecha_nac%TYPE,
+        domicilio cliente.domicilio%TYPE,
+        telefono cliente.telefono%TYPE,
+        email cliente.email%TYPE
+    ) AS BEGIN
+INSERT INTO cliente (id, nombre, apellido, fecha_nac, domicilio, telefono, email, creado_en)
+VALUES (0, UPPER(nombre), UPPER(apellido), nacimiento, domicilio, telefono, email, SYSDATE);
+COMMIT;
+END;
+/
 -- ===================
 -- VISTAS
 -- ===================
@@ -248,3 +241,33 @@ FROM (stock s
 JOIN libro l ON (s.id_libro = l.id)
 )
 ORDER BY l.nombre ASC;
+
+CREATE OR REPLACE VIEW vw_clientes AS
+SELECT 
+    s.id,
+    s.cantidad,
+    l.nombre
+FROM (stock s 
+JOIN libro l ON (s.id_libro = l.id)
+)
+ORDER BY l.nombre ASC;
+
+CREATE OR REPLACE VIEW vw_prestamo_cliente_empleado AS
+SELECT 
+    p.codigo, 
+    c.nombre,
+    c.apellido,
+    p.fecha,
+    l.nombre,
+    p.devolucion,
+    p.devuelto,
+    e.nombre,
+    e.apellido
+FROM (prestamo p
+JOIN libro l ON (p.id_libro = l.id)
+JOIN cliente c ON  (p.id_cliente = c.id)
+JOIN empleado e ON (p.id_empleado = e.id)
+)
+ORDER BY p.fecha ASC;
+
+INSERT INTO prestamo (id, codigo, fecha, devolucion, devuelto, id_libro, id:cliente, id_empleado) VALUES(0, 'JAHAL147', '03-JUL-2020', 'N', )
