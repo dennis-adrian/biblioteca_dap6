@@ -19,7 +19,8 @@ CREATE TEMPORARY TABLESPACE tstmpbiblioteca tempfile 'C:\APP\DENNI\PRODUCT\18.0.
 create user dbabiblioteca identified by biblioteca2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
 grant dba to dbabiblioteca;
 -- conn dbabiblioteca/biblioteca2020@localhost:1521/bibliotecabd
-alter session set nls_date_format = 'DD-MON-YYYY HH24:MI:SS';
+alter session
+set nls_date_format = 'DD-MON-YYYY HH24:MI:SS';
 -- ===================
 -- Crear Tablas
 -- ===================
@@ -105,90 +106,145 @@ CREATE TABLE prestamo (
 -- ===================
 -- Crear Sequences
 -- ===================
-CREATE SEQUENCE seq_pais
-increment by 1
-start with 1;
-CREATE SEQUENCE seq_autor
-increment by 1
-start with 1;
-CREATE SEQUENCE seq_genero
-increment by 1
-start with 1;
-CREATE SEQUENCE seq_libro
-increment by 1
-start with 1;
-CREATE SEQUENCE seq_stock
-increment by 1
-start with 1;
-CREATE SEQUENCE seq_empleado
-increment by 1
-start with 1;
-CREATE SEQUENCE seq_prestamo
-increment by 1
-start with 1;
--- ===================
+CREATE SEQUENCE seq_pais increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_autor increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_cliente increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_genero increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_libro increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_stock increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_empleado increment by 1 start with 1 nocache;
+CREATE SEQUENCE seq_prestamo increment by 1 start with 1 nocache;
+--= =================
 -- Crear Triggers
 -- ===================
-CREATE OR REPLACE TRIGGER TRG_PAIS_SEQ
-BEFORE INSERT ON pais_autor
-REFERENCING new as new for each row
+CREATE OR REPLACE TRIGGER TRG_PAIS_SEQ BEFORE
+INSERT ON pais_autor
+FOR EACH ROW
+BEGIN
+SELECT seq_pais.nextval
+INTO :new.id
+FROM dual;
+END;
+/
+CREATE OR REPLACE TRIGGER TRG_AUTOR_SEQ BEFORE
+INSERT ON autor
+FOR EACH ROW
+BEGIN
+SELECT seq_autor.nextval
+INTO :new.id
+FROM dual;
+END;
+/
+CREATE OR REPLACE TRIGGER TRG_CLIENTE_SEQ BEFORE
+INSERT ON cliente
+FOR EACH ROW
+BEGIN
+SELECT seq_cliente.nextval
+INTO :new.id
+FROM dual;
+END;
+/
+CREATE OR REPLACE TRIGGER TRG_GENERO_SEQ BEFORE
+INSERT ON genero REFERENCING new as new for each row
 declare proximoid Number := 0;
-begin 
-	select seq_pais.nextval into proximoid from dual;
-	:new.id := proximoid;
+begin
+select seq_genero.nextval into proximoid
+from dual;
+:new.id := proximoid;
 end;
 /
-CREATE OR REPLACE TRIGGER TRG_AUTOR_SEQ
-BEFORE INSERT ON autor
-REFERENCING new as new for each row
+CREATE OR REPLACE TRIGGER TRG_LIBRO_SEQ BEFORE
+INSERT ON libro REFERENCING new as new for each row
 declare proximoid Number := 0;
-begin 
-	select seq_autor.nextval into proximoid from dual;
-	:new.id := proximoid;
+begin
+select seq_libro.nextval into proximoid
+from dual;
+:new.id := proximoid;
 end;
 /
-CREATE OR REPLACE TRIGGER TRG_GENERO_SEQ
-BEFORE INSERT ON genero
-REFERENCING new as new for each row
+CREATE OR REPLACE TRIGGER TRG_STOCK_SEQ BEFORE
+INSERT ON stock REFERENCING new as new for each row
 declare proximoid Number := 0;
-begin 
-	select seq_genero.nextval into proximoid from dual;
-	:new.id := proximoid;
+begin
+select seq_stock.nextval into proximoid
+from dual;
+:new.id := proximoid;
 end;
 /
-CREATE OR REPLACE TRIGGER TRG_LIBRO_SEQ
-BEFORE INSERT ON libro
-REFERENCING new as new for each row
+CREATE OR REPLACE TRIGGER TRG_EMPLEADO_SEQ BEFORE
+INSERT ON empleado REFERENCING new as new for each row
 declare proximoid Number := 0;
-begin 
-	select seq_libro.nextval into proximoid from dual;
-	:new.id := proximoid;
+begin
+select seq_empleado.nextval into proximoid
+from dual;
+:new.id := proximoid;
 end;
 /
-CREATE OR REPLACE TRIGGER TRG_STOCK_SEQ
-BEFORE INSERT ON stock
-REFERENCING new as new for each row
+CREATE OR REPLACE TRIGGER TRG_PRESTAMO_SEQ BEFORE
+INSERT ON prestamo REFERENCING new as new for each row
 declare proximoid Number := 0;
-begin 
-	select seq_stock.nextval into proximoid from dual;
-	:new.id := proximoid;
+begin
+select seq_prestamo.nextval into proximoid
+from dual;
+:new.id := proximoid;
 end;
-/
-CREATE OR REPLACE TRIGGER TRG_EMPLEADO_SEQ
-BEFORE INSERT ON empleado
-REFERENCING new as new for each row
-declare proximoid Number := 0;
-begin 
-	select seq_empleado.nextval into proximoid from dual;
-	:new.id := proximoid;
-end;
-/
-CREATE OR REPLACE TRIGGER TRG_PRESTAMO_SEQ
-BEFORE INSERT ON prestamo
-REFERENCING new as new for each row
-declare proximoid Number := 0;
-begin 
-	select seq_prestamo.nextval into proximoid from dual;
-	:new.id := proximoid;
-end;
-/
+/ -- ===================
+-- Stored Procedures
+-- ===================
+CREATE OR REPLACE PROCEDURE sp_pais_autor_insert (pais pais_autor.pais %TYPE) AS BEGIN
+INSERT INTO pais_autor (id, pais, creado_en)
+VALUES (0, UPPER(pais), SYSDATE);
+COMMIT;
+END;
+/ EXEC sp_pais_autor_insert('colombia');
+EXEC sp_pais_autor_insert('sudafrica');
+EXEC sp_pais_autor_insert('india');
+EXEC sp_pais_autor_insert('reino unido');
+EXEC sp_pais_autor_insert('españa');
+EXEC sp_pais_autor_insert('irlanda');
+EXEC sp_pais_autor_insert('francia');
+EXEC sp_pais_autor_insert('estados unidos');
+EXEC sp_pais_autor_insert('grecia');
+CREATE OR REPLACE PROCEDURE sp_autor_insert (
+        nombre autor.nombre %TYPE,
+        pais autor.id_pais %TYPE
+    ) AS BEGIN
+INSERT INTO autor (id, nombre, id_pais, creado_en)
+VALUES (0, UPPER(nombre), pais, SYSDATE);
+COMMIT;
+END;
+/ 
+EXEC sp_autor_insert('Gabriel Garcia Marquez', 22);
+EXEC sp_autor_insert('J. R. R. Tolkien', 42);
+EXEC sp_autor_insert('George Orwell', 43);
+EXEC sp_autor_insert('Jane Austen', 44);
+EXEC sp_autor_insert('Miguel de Cervantes', 62);
+EXEC sp_autor_insert('Oscar Wilde', 63);
+EXEC sp_autor_insert('Antoine de Saint-Exupéry', 64); 
+EXEC sp_autor_insert('William Shakespeare', 44); 
+EXEC sp_autor_insert('Margaret Mitchell', 65); 
+EXEC sp_autor_insert('Homero', 66); 
+EXEC sp_autor_insert('Lewis Carroll', 44); 
+EXEC sp_autor_insert('Julio Verne', 64); 
+-- ===================
+-- VISTAS
+-- ===================
+CREATE OR REPLACE VIEW vw_autor_pais AS
+SELECT 
+    a.id,
+    a.nombre,
+    p.pais
+FROM (autor a 
+JOIN pais_autor p ON (a.id_pais = p.id)
+)
+ORDER BY a.nombre ASC;
+
+CREATE OR REPLACE VIEW vw_stock_libros AS
+SELECT 
+    s.id,
+    s.cantidad,
+    l.nombre
+FROM (stock s 
+JOIN libro l ON (s.id_libro = l.id)
+)
+ORDER BY l.nombre ASC;
