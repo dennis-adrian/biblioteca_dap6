@@ -1,0 +1,10 @@
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (50, 1, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (50, 2, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (50, 3, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (100, 4, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (100, 5, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (30, 6, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (30, 7, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (30, 8, SYSDATE);
+INSERT INTO stock (cantidad, id_libro, creado_en) VALUES (30, 9, SYSDATE);
+COMMIT;

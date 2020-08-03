@@ -58,3 +58,4 @@ values (
 		'75051403',
 		'bfrany7@businessweek.com'
 	);
+    COMMIT;

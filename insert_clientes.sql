@@ -998,3 +998,4 @@ insert into cliente (id, nombre, apellido, fecha_nac, domicilio, telefono, email
 insert into cliente (id, nombre, apellido, fecha_nac, domicilio, telefono, email, creado_en) values (0, 'Ange', 'Hoyt', '17-Jan-1992', '477 Randy Trail', 72517940, 'ahoytrp@examiner.com', '17-Jul-2020');
 insert into cliente (id, nombre, apellido, fecha_nac, domicilio, telefono, email, creado_en) values (0, 'Konstance', 'Harmes', '09-Nov-1992', '2457 Prairie Rose Point', 62517067, 'kharmesrq@angelfire.com', '12-Jul-2020');
 insert into cliente (id, nombre, apellido, fecha_nac, domicilio, telefono, email, creado_en) values (0, 'Alic', 'Idney', '31-Dec-1999', '5454 Chive Way', 71002994, 'aidneyrr@about.com', '16-Jul-2020');
+COMMIT;
