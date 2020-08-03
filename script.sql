@@ -183,20 +183,32 @@ end;
 CREATE OR REPLACE TRIGGER TRG_DISMINUIR_STOCK
 AFTER
 INSERT ON prestamo
-DECLARE id_actual Number := 0;
-id_libro_insertado Number := 0;
-stock_actual Number := 0;
+DECLARE 
+    id_actual Number := 0;
+    id_libro_insertado Number := 0;
+    stock_actual Number := 0;
 BEGIN
-SELECT seq_prestamo.CURRVAL INTO id_actual
-FROM dual;
-SELECT id_libro INTO id_libro_insertado
-FROM prestamo
-WHERE id = id_actual;
-UPDATE stock
-SET cantidad = (cantidad - 1)
-WHERE id_libro = id_libro_insertado;
+    SELECT seq_prestamo.CURRVAL INTO id_actual FROM dual;
+    SELECT id_libro INTO id_libro_insertado FROM prestamo WHERE id = id_actual;
+    UPDATE stock SET cantidad = (cantidad - 1) WHERE id_libro = id_libro_insertado;
 END;
-/ -- ===================
+/
+CREATE OR REPLACE TRIGGER TRG_AUMENTAR_STOCK
+AFTER
+UPDATE ON prestamo
+DECLARE 
+    id_actual Number := 0;
+    id_libro_devuelto Number := 0;
+    stock_actual Number := 0;
+BEGIN
+    select id INTO id_actual from prestamo where devuelto =  'Y' order by devolucion DESC fetch first 1 rows only;
+    SELECT id_libro INTO id_libro_devuelto FROM prestamo WHERE id = id_actual;
+    UPDATE stock
+    SET cantidad = (cantidad + 1)
+    WHERE id_libro = id_libro_devuelto;
+END;
+/
+-- ===================
 -- Stored Procedures
 -- ===================
 CREATE OR REPLACE PROCEDURE sp_pais_autor_insert (pais pais_autor.pais %TYPE) AS BEGIN
@@ -274,17 +286,12 @@ END;
 /
 CREATE OR REPLACE PROCEDURE sp_devolver_prestamo(
     id_prestamo prestamo.id%TYPE
-    c1 OUT SYS_REFCURSOR; 
 )
-IS
-DECLARE
-    id_libro_devuelto prestamo.id_libro%TYPE 
+AS
 BEGIN
     UPDATE prestamo SET devuelto = 'Y', devolucion = SYSDATE, modificado_en = SYSDATE WHERE id = id_prestamo;
-    OPEN c1 FOR
-    SELECT id_libro INTO id_libro_devuelto FROM prestamo WHERE id = id_prestamo;
-    UPDATE stock SET cantidad = (cantidad + 1) WHERE id_libro = id_libro_devuelto;
-END sp_devolver_prestamo;
+    COMMIT;
+END;
 /
 -- ===================
 -- VISTAS
