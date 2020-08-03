@@ -359,6 +359,23 @@ FROM (
         JOIN libro l ON (s.id_libro = l.id)
     )
 ORDER BY l.nombre ASC;
+CREATE OR REPLACE VIEW vw_libros_full AS
+SELECT l.id,
+    l.nombre as nombre_libro,
+    l.isbn, 
+    l.anio_publicacion as publicacion, 
+    l.id_autor,
+    a.nombre as nombre_autor,
+    l.id_genero, 
+    g.nombre as genero,
+    s.cantidad
+FROM (
+        libro l
+        JOIN stock s ON (l.id = s.id_libro)
+        JOIN autor a ON (l.id_autor = a.id)
+        JOIN genero g ON (l.id_genero = g.id)
+    )
+ORDER BY l.nombre ASC;
 CREATE OR REPLACE VIEW vw_clientes AS
 SELECT s.id,
     s.cantidad,
