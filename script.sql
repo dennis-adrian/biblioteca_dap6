@@ -14,6 +14,38 @@ SET CONTAINER = BIBLIOTECABD;
 CREATE TABLESPACE tsbiblioteca DATAFILE 'C:\APP\DENNI\PRODUCT\18.0.0\ORADATA\XE\PDBBIBLIOTECA\tsbiblioteca.dbf' size 500k reuse autoextend on next 500k maxsize 5M;
 CREATE TEMPORARY TABLESPACE tstmpbiblioteca tempfile 'C:\APP\DENNI\PRODUCT\18.0.0\ORADATA\XE\PDBBIBLIOTECA\tstmpbiblioteca.dbf' size 2M reuse autoextend on next 2M maxsize unlimited;
 -- ===================
+-- Crear Roles
+-- ===================
+create role rolprogramador;
+grant create session to rolprogramador;
+grant alter session to rolprogramador;
+grant create trigger to rolprogramador;
+grant create view to rolprogramador;
+grant create, alter, drop procedure to rolprogramador;
+grant select, insert, update, delete on cliente to rolprogramador;
+grant select, insert, update, delete on empleado to rolprogramador;
+grant select, insert, update, delete on prestamo to rolprogramador;
+grant select, insert, update, delete on libro to rolprogramador;
+grant select, insert, update, delete on stock to rolprogramador;
+grant select, insert, update, delete on autor to rolprogramador;
+grant select, insert, update, delete on genero to rolprogramador;
+grant select, insert, update, delete on pais_autor to rolprogramador;
+
+
+create role rolusuario;
+grant select, insert, update on libro to rolusuario;
+grant select, insert, update on prestamo to rolusuario;
+grant select, insert, update, delete on cliente to rolprogramador;
+
+create role roladministrador;
+grant select, insert, update on cliente to rolprogramador;
+grant select, insert, update on prestamo to rolprogramador;
+grant select, insert, update on libro to rolprogramador;
+grant select, insert, update on stock to rolprogramador;
+grant select, insert, update on autor to rolprogramador;
+grant select, insert, update on genero to rolprogramador;
+grant select, insert, update on pais_autor to rolprogramador;
+-- ===================
 -- Crear Usuarios
 -- ===================
 create user dbabiblioteca identified by biblioteca2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
@@ -21,6 +53,21 @@ grant dba to dbabiblioteca;
 -- conn dbabiblioteca/biblioteca2020@localhost:1521/bibliotecabd
 alter session
 set nls_date_format = 'DD-MON-YYYY HH24:MI:SS';
+
+create user progdennisadrian identified by user2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
+grant rolprogramador to progdennisadrian;
+
+create user progpedromendoza identified by user2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
+grant rolprogramador to progpedromendoza;
+
+create user admin1 identified by user2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
+grant roladministrador to admin1;
+
+create user user1 identified by user2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
+grant rolusuario to user1;
+
+create user user2 identified by user2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
+grant rolusuario to user2;
 -- ===================
 -- Crear Tablas
 -- ===================
