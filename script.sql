@@ -345,10 +345,22 @@ BEGIN
     DBMS_SQL.RETURN_RESULT(c1);
 END;
 /
+CREATE OR REPLACE PROCEDURE sp_empleado_nombre_apellido_select(
+    nombre_empleado IN cliente.nombre%TYPE
+)
+AS
+    c1 SYS_REFCURSOR; 
+BEGIN
+    open c1 for
+    select * from vw_empleado_nombre_apellido where nombre_completo LIKE UPPER('%' || nombre_empleado || '%') AND rownum <= 50;
+    DBMS_SQL.RETURN_RESULT(c1);
+END;
+/
 
 exec sp_prestamo_por_apellido_fecha_select('max', '20-JUL-2020', '03-AUG-2020');
 exec sp_prestamo_por_libro_fecha_select('don', '20-JUL-2020', '03-AUG-2020');
 exec sp_cliente_nombre_apellido_select('wa');
+exec sp_empleado_nombre_apellido_select('');
 
 -- ===================
 -- VISTAS
@@ -402,6 +414,12 @@ SELECT
     id,
     UPPER(apellido ||' '|| nombre) as nombre_completo
 FROM cliente
+ORDER BY apellido ASC;
+CREATE OR REPLACE VIEW vw_empleado_nombre_apellido AS
+SELECT 
+    id,
+    UPPER(apellido ||' '|| nombre) as nombre_completo
+FROM empleado
 ORDER BY apellido ASC;
 CREATE OR REPLACE VIEW vw_prestamo_cliente_empleado AS
 SELECT p.id,
