@@ -437,3 +437,10 @@ FROM (
         JOIN empleado e ON (p.id_empleado = e.id)
     )
 ORDER BY p.fecha ASC;
+-- ===================
+-- INDICES
+-- ===================
+CREATE INDEX idx_cliente_apellido_nombre ON cliente (apellido, nombre);
+CREATE INDEX idx_libros_nombre ON libro (nombre);
+CREATE INDEX idx_prestamos ON prestamo (fecha, devolucion);
+CREATE INDEX idx_empleados ON empleado (apellido, nombre);
