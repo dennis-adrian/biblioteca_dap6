@@ -346,7 +346,7 @@ BEGIN
 END;
 /
 
-exec sp_prestamo_por_apellido_fecha_select('', '20-JUL-2020', '03-AUG-2020');
+exec sp_prestamo_por_apellido_fecha_select('max', '20-JUL-2020', '03-AUG-2020');
 exec sp_prestamo_por_libro_fecha_select('don', '20-JUL-2020', '03-AUG-2020');
 exec sp_cliente_nombre_apellido_select('wa');
 
@@ -406,14 +406,12 @@ ORDER BY apellido ASC;
 CREATE OR REPLACE VIEW vw_prestamo_cliente_empleado AS
 SELECT p.id,
     p.codigo,
-    UPPER(c.nombre) as nombre_cliente,
-    UPPER(c.apellido) as apellido_cliente,
+    UPPER(c.apellido ||' '|| c.nombre) as nombre_cliente,
     p.fecha,
     UPPER(l.nombre) as nombre_libro,
     p.devolucion,
     p.devuelto,
-    UPPER(e.nombre) as nombre_empleado,
-    UPPER(e.apellido) as apellido_empleado
+    UPPER(e.apellido ||' '|| e.nombre) as nombre_empleado
 FROM (
         prestamo p
         JOIN libro l ON (p.id_libro = l.id)
