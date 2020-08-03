@@ -9,8 +9,10 @@ import Clases.Cliente;
 import Clases.Empleado;
 import Clases.Libro;
 import Clases.Prestamo;
+import java.text.MessageFormat;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -75,9 +77,9 @@ public class FormPrestamo extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         edtBuscarPrestamo = new javax.swing.JTextField();
         btnBuscarPrestamo = new javax.swing.JButton();
-        cbBuscarPrestamo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnImprimir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -200,7 +202,7 @@ public class FormPrestamo extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(987, 703, 120, 46));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 700, 120, 46));
 
         jLabel12.setText("Empleado:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(776, 38, -1, -1));
@@ -338,14 +340,20 @@ public class FormPrestamo extends javax.swing.JFrame {
         });
         getContentPane().add(btnBuscarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 482, -1, -1));
 
-        getContentPane().add(cbBuscarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 482, 185, -1));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prestamo.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Californian FB", 1, 36)); // NOI18N
         jLabel1.setText("Prestamos");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+
+        btnImprimir.setText("PDF");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 630, 120, 46));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu.jpeg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-460, -190, -1, -1));
@@ -472,6 +480,18 @@ public class FormPrestamo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRecibirActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        MessageFormat header = new MessageFormat("Reporte de Prestamos");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try {
+            jTablePrestamos.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Error al imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,10 +604,10 @@ public class FormPrestamo extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarEmpleado;
     private javax.swing.JButton btnBuscarLibro;
     private javax.swing.JButton btnBuscarPrestamo;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnPrestar;
     private javax.swing.JButton btnRecibir;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cbBuscarPrestamo;
     private javax.swing.JTextField edtBuscarCliente;
     private javax.swing.JTextField edtBuscarEmpleado;
     private javax.swing.JTextField edtBuscarLibro;

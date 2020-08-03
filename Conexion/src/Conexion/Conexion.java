@@ -30,6 +30,20 @@ public class Conexion {
         }
     }
     
+    public Connection Conexion(){
+    String urlconnection = "jdbc:oracle:thin:@localhost:1521/BIBLIOTECABD";
+        Properties propiedades = new Properties();
+        propiedades.setProperty("user", "dbabiblioteca");
+        propiedades.setProperty("password", "biblioteca2020");
+        
+        try {
+            this.cnx = DriverManager.getConnection(urlconnection ,propiedades);
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return cnx;
+    }
+    
     public boolean seleccionar(String sql){
         try {
             this.st = this.cnx.prepareStatement(sql);

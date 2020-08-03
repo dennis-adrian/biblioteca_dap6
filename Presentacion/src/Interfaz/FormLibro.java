@@ -8,8 +8,10 @@ package Interfaz;
 import Clases.Autor;
 import Clases.Genero;
 import Clases.Libro;
+import java.text.MessageFormat;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,10 +62,10 @@ public class FormLibro extends javax.swing.JFrame {
         jcbGeneros = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         edtCodLibro = new javax.swing.JTextField();
-        btnOpenPrestamos = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         edtStock = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        btnImprimir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -189,20 +191,20 @@ public class FormLibro extends javax.swing.JFrame {
         edtCodLibro.setEditable(false);
         getContentPane().add(edtCodLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 162, -1));
 
-        btnOpenPrestamos.setText("Prestamos");
-        btnOpenPrestamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpenPrestamosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnOpenPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 285, -1, -1));
-
         jLabel8.setText("Stock:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
         getContentPane().add(edtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 162, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/libros (1).png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        btnImprimir.setText("PDF");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, 100, 50));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modulolibro2.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 610));
@@ -316,11 +318,17 @@ public class FormLibro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnOpenPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenPrestamosActionPerformed
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
-        this.dispose();//to close the current jframe
-    }//GEN-LAST:event_btnOpenPrestamosActionPerformed
+        MessageFormat header = new MessageFormat("Reporte de Libros");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try {
+            jTable1.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Error al imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,8 +411,8 @@ public class FormLibro extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnOpenPrestamos;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField edtAnio;
     private javax.swing.JTextField edtBuscar;

@@ -5,6 +5,15 @@
  */
 package Interfaz;
 
+import Conexion.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+
 /**
  *
  * @author Megashi
@@ -44,6 +53,11 @@ public class Menu extends javax.swing.JFrame {
         btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf.png"))); // NOI18N
         btnReportes.setBorderPainted(false);
         btnReportes.setContentAreaFilled(false);
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         btnLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/libro (2).png"))); // NOI18N
@@ -83,12 +97,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 1140, 700));
 
         jLabel5.setFont(new java.awt.Font("Californian FB", 1, 36)); // NOI18N
-        jLabel5.setText("Reportes");
+        jLabel5.setText("Reporte Prestamos");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu.jpeg"))); // NOI18N
         fondo.setText("jLabel1");
-        fondo.setMinimumSize(new java.awt.Dimension(1638, 985));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 700));
 
         pack();
@@ -104,6 +117,11 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         new FormPrestamo().setVisible(true);
     }//GEN-LAST:event_btnPrestamosActionPerformed
+
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_btnReportesActionPerformed
 
     /**
      * @param args the command line arguments
