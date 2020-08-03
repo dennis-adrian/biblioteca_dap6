@@ -147,7 +147,7 @@ public class Prestamo extends Conexion{
     
     public boolean insertar(){ //insert into prestamo (nombre,isbn,anio_publicacion,id_autor,id_genero,creado_en) values ('Cien Años de Soledad','9781234567897',1967,1,4, SYSDATE);
         try {
-            String sql = "insert into prestamo (codigo,fecha,devuelto,id_libro,id_cliente,id_empleado,creado_en) values (?,SYSDATE,'n',?,?,?,SYSDATE)";
+            String sql = "insert into prestamo (codigo,fecha,devuelto,id_libro,id_cliente,id_empleado,creado_en) values (?,SYSDATE,'N',?,?,?,SYSDATE)";
             this.st = this.cnx.prepareStatement(sql);
             this.st.setString(1, this.codigo);
             this.st.setInt(2, this.id_libro);
@@ -161,23 +161,20 @@ public class Prestamo extends Conexion{
         }
     }
     
-    /*public boolean modificar(){
+    public boolean modificar(int id){
         try {
-            String sql = "update libro set nombre = ?, isbn = ?, anio_publicacion = ?,id_autor = ?, id_genero = ?  where id=?";
+            String sql = "update prestamo set codigo= ?, modificado_en = SYSDATE,devolucion = SYSDATE,devuelto= 'Y' where id_libro=? and devuelto = 'N'";
             this.st = this.cnx.prepareStatement(sql);
-            this.st.setString(1, this.nombre);
-            this.st.setString(2, this.isbn);
-            this.st.setInt(3, this.anio_publicacion);
-            this.st.setInt(4, this.id_autor);
-            this.st.setInt(5, this.id_genero);
-            this.st.setInt(6, this.id);
+            this.st.setString(1, this.codigo);
+            this.st.setInt(2, id);
+            
             return this.ejecutar();
             
         } catch (Exception e) {
             return false;
         }
     }
-    
+    /*
     public boolean eliminar(){
         try {
             String sql = "delete from libro where id=?";
@@ -196,8 +193,8 @@ public class Prestamo extends Conexion{
         LinkedList<Prestamo> prestamos = new LinkedList<Prestamo>();
         try {
             String sql = "select p.id as idprestamo,p.codigo,p.fecha,p.devolucion,p.devuelto,p.id_libro as idlibro,l.nombre as libro,c.id as idcliente,c.nombre as cliente,e.id as idemp,e.nombre as empleado "
-                    + "from prestamo p inner join libro l on(p.id_libro = l.id) inner join cliente c on (c.id = p.id_cliente) inner join empleado e on (e.id = p.id_empleado) ";
-                    //+ "where c.nombre like ?";
+                    + "from prestamo p inner join libro l on(p.id_libro = l.id) inner join cliente c on (c.id = p.id_cliente) inner join empleado e on (e.id = p.id_empleado) "
+                    + "where c.nombre like ?";
             this.st = this.cnx.prepareStatement(sql);
             this.st.setString(1, "%"+criterio+"%");
             ResultSet rs = this.st.executeQuery();

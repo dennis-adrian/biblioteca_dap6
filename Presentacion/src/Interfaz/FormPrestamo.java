@@ -40,11 +40,8 @@ public class FormPrestamo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
-        edtIdPrestamo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         edtCodPrestamo = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        edtFechaEntrega = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         edtBuscarCliente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,8 +52,6 @@ public class FormPrestamo extends javax.swing.JFrame {
         btnPrestar = new javax.swing.JButton();
         btnRecibir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        edtFechaDev = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         edtBuscarEmpleado = new javax.swing.JTextField();
         btnBuscarEmpleado = new javax.swing.JButton();
@@ -72,34 +67,34 @@ public class FormPrestamo extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         lblIdEmpleado = new javax.swing.JLabel();
         edtNombreEmpleado = new javax.swing.JTextField();
-        cbDevuelto = new javax.swing.JCheckBox();
-        jLabel20 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         edtBuscarLibro = new javax.swing.JTextField();
         btnBuscarLibro = new javax.swing.JButton();
-        btnMenu = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableLibros = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         edtBuscarPrestamo = new javax.swing.JTextField();
         btnBuscarPrestamo = new javax.swing.JButton();
         cbBuscarPrestamo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("ID:");
-
-        edtIdPrestamo.setEditable(false);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 195, -1, -1));
 
         jLabel8.setText("Codigo:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 301, -1, -1));
 
         edtCodPrestamo.setEditable(false);
-
-        jLabel9.setText("Fecha Entrega:");
-
-        edtFechaEntrega.setEditable(false);
+        getContentPane().add(edtCodPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 298, 162, -1));
 
         jLabel10.setText("Cliente:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 38, -1, -1));
+        getContentPane().add(edtBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 35, 148, -1));
 
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,12 +126,15 @@ public class FormPrestamo extends javax.swing.JFrame {
             jTableCliente.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 63, 306, 181));
+
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 34, -1, -1));
 
         jTablePrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,7 +148,7 @@ public class FormPrestamo extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -178,14 +176,23 @@ public class FormPrestamo extends javax.swing.JFrame {
             jTablePrestamos.getColumnModel().getColumn(9).setMaxWidth(50);
         }
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 511, 936, 238));
+
         btnPrestar.setText("Prestar");
         btnPrestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrestarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPrestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 357, -1, -1));
 
         btnRecibir.setText("Recibir");
+        btnRecibir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecibirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRecibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 357, -1, -1));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -193,12 +200,11 @@ public class FormPrestamo extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-
-        jLabel11.setText("Fecha Devolucion:");
-
-        edtFechaDev.setEditable(false);
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(987, 703, 120, 46));
 
         jLabel12.setText("Empleado:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(776, 38, -1, -1));
+        getContentPane().add(edtBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 35, 148, -1));
 
         btnBuscarEmpleado.setText("Buscar");
         btnBuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +212,7 @@ public class FormPrestamo extends javax.swing.JFrame {
                 btnBuscarEmpleadoActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBuscarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(984, 34, -1, -1));
 
         jTableEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -237,30 +244,39 @@ public class FormPrestamo extends javax.swing.JFrame {
             jTableEmpleado.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(776, 63, 306, 181));
+
         jLabel13.setText("Libro:");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 223, -1, -1));
 
         edtNombreLibro.setEditable(false);
+        getContentPane().add(edtNombreLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 220, 162, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 264, -1, -1));
 
         lblIdLibro.setText("id");
+        getContentPane().add(lblIdLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 223, -1, -1));
 
         jLabel16.setText("Cliente:");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 249, -1, -1));
 
         lblIdCliente.setText("id");
+        getContentPane().add(lblIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 249, -1, -1));
 
         edtNombreCliente.setEditable(false);
+        getContentPane().add(edtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 246, 162, -1));
 
         jLabel18.setText("Empleado:");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 275, -1, -1));
 
         lblIdEmpleado.setText("id");
+        getContentPane().add(lblIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 275, -1, -1));
 
         edtNombreEmpleado.setEditable(false);
-
-        cbDevuelto.setText("Si");
-        cbDevuelto.setEnabled(false);
-
-        jLabel20.setText("Devuelto:");
+        getContentPane().add(edtNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 272, 162, -1));
 
         jLabel15.setText("Libro:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 292, -1, -1));
+        getContentPane().add(edtBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 289, 148, -1));
 
         btnBuscarLibro.setText("Buscar");
         btnBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -268,13 +284,7 @@ public class FormPrestamo extends javax.swing.JFrame {
                 btnBuscarLibroActionPerformed(evt);
             }
         });
-
-        btnMenu.setText("Menu");
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
-            }
-        });
+        getContentPane().add(btnBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 288, -1, -1));
 
         jTableLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -314,7 +324,11 @@ public class FormPrestamo extends javax.swing.JFrame {
             jTableLibros.getColumnModel().getColumn(6).setMaxWidth(50);
         }
 
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 317, 680, 125));
+
         jLabel17.setText("Prestamo:");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 486, -1, -1));
+        getContentPane().add(edtBuscarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 483, 260, -1));
 
         btnBuscarPrestamo.setText("Buscar");
         btnBuscarPrestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -322,201 +336,19 @@ public class FormPrestamo extends javax.swing.JFrame {
                 btnBuscarPrestamoActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBuscarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 482, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel20))
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel18)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblIdEmpleado))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel16)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblIdCliente))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblIdLibro)))
-                                        .addGap(10, 10, 10)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtCodPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtFechaDev, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(edtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbDevuelto)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(btnPrestar)
-                                .addGap(50, 50, 50)
-                                .addComponent(btnRecibir)))
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(edtBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnBuscarLibro))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(edtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnBuscarCliente))
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(edtBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnBuscarEmpleado))
-                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(20, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbBuscarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(edtBuscarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscarPrestamo)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26))))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(edtIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtCodPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(edtFechaDev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbDevuelto)
-                            .addComponent(jLabel20))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(edtNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIdLibro))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(edtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIdCliente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(edtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIdEmpleado))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPrestar)
-                            .addComponent(btnRecibir))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(264, 264, 264)
-                                        .addComponent(jLabel14))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(34, 34, 34)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(edtBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel12)
-                                                    .addComponent(btnBuscarEmpleado))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(edtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel10)
-                                                    .addComponent(btnBuscarCliente))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(47, 47, 47))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(edtBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel15)
-                                .addComponent(btnBuscarLibro)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(cbBuscarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtBuscarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarPrestamo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41))
-        );
+        getContentPane().add(cbBuscarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 482, 185, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prestamo.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Californian FB", 1, 36)); // NOI18N
+        jLabel1.setText("Prestamos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu.jpeg"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-460, -190, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -541,7 +373,7 @@ public class FormPrestamo extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();//to close the current jframe
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
@@ -559,13 +391,23 @@ public class FormPrestamo extends javax.swing.JFrame {
         mostrarJTableLibros(this.edtBuscarLibro.getText().toString());
     }//GEN-LAST:event_btnBuscarLibroActionPerformed
 
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMenuActionPerformed
-
     private void jTablePrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrestamosMouseClicked
         // TODO add your handling code here:
+        //String codigo = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 0).toString();
+        String id_libro = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 5).toString();
+        String nombre_libro = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 6).toString();
+        String id_cliente = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 7).toString();
+        String nombre_cliente = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 8).toString();
+        String id_empleado = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 9).toString();
+        String nombre_empleado = this.jTablePrestamos.getModel().getValueAt(this.jTablePrestamos.getSelectedRow(), 10).toString();
         
+        //this.edtCodPrestamo.setText(codigo);
+        this.lblIdLibro.setText(id_libro);
+        this.edtNombreLibro.setText(nombre_libro);
+        this.lblIdCliente.setText(id_cliente);
+        this.edtNombreCliente.setText(nombre_cliente);
+        this.lblIdEmpleado.setText(id_empleado);
+        this.edtNombreEmpleado.setText(nombre_empleado);
     }//GEN-LAST:event_jTablePrestamosMouseClicked
 
     private void jTableLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLibrosMouseClicked
@@ -579,6 +421,7 @@ public class FormPrestamo extends javax.swing.JFrame {
 
     private void btnBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPrestamoActionPerformed
         // TODO add your handling code here:
+        mostrarJTablePrestamos(this.edtBuscarPrestamo.getText().toString());
     }//GEN-LAST:event_btnBuscarPrestamoActionPerformed
 
     private void btnPrestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestarActionPerformed
@@ -595,7 +438,8 @@ public class FormPrestamo extends javax.swing.JFrame {
             
             if (prestamos.insertar()) {
                 mostrarMensajeOK("Prestamo registrado Correctamente");
-                //this.mostrarJTablePrestamos(this.edtBuscarPrestamo.getText().toString());
+                this.mostrarJTablePrestamos(this.edtBuscarPrestamo.getText().toString());
+                this.mostrarJTableLibros(this.edtBuscarLibro.getText().toString());
             } else {
                 mostrarMensajeError("Error al registrar el Prestamo");
             }
@@ -603,6 +447,30 @@ public class FormPrestamo extends javax.swing.JFrame {
             mostrarMensajeError(e.getMessage());
         }
     }//GEN-LAST:event_btnPrestarActionPerformed
+
+    private void btnRecibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecibirActionPerformed
+        // TODO add your handling code here:
+        try {
+            Prestamo prestamos = new Prestamo();
+            prestamos.setCodigo(this.edtCodPrestamo.getText());
+            prestamos.setId_cliente(Integer.parseInt(this.lblIdCliente.getText().toString()));
+            prestamos.setId_empleado(Integer.parseInt(this.lblIdEmpleado.getText().toString()));
+            prestamos.setId_libro(Integer.parseInt(this.lblIdLibro.getText().toString()));
+            prestamos.setNombreCliente(this.edtNombreCliente.getText());
+            prestamos.setNombreEmpleado(this.edtNombreEmpleado.getText());
+            prestamos.setNombreLibro(this.edtNombreLibro.getText());
+            
+            if (prestamos.modificar(Integer.parseInt(this.lblIdLibro.getText().toString()))) {
+                mostrarMensajeOK("Prestamo registrado Correctamente");
+                this.mostrarJTablePrestamos(this.edtBuscarPrestamo.getText().toString());
+                this.mostrarJTableLibros(this.edtBuscarLibro.getText().toString());
+            } else {
+                mostrarMensajeError("Error al registrar el Prestamo");
+            }
+        } catch (Exception e) {
+            mostrarMensajeError(e.getMessage());
+        }
+    }//GEN-LAST:event_btnRecibirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -704,7 +572,7 @@ public class FormPrestamo extends javax.swing.JFrame {
             tabla.setNumRows(0);
             for (int i = 0; i < listaPrestamo.size(); i++) {
                 Prestamo p = listaPrestamo.get(i);
-                Object[] fila = {p.getId(), p.getCodigo(), p.getFecha(), p.getDevolucion(), p.getDevuelto(), p.getId_libro(),p.getNombreLibro(),p.getId_cliente(),p.getNombreCliente(),p.getId_empleado(),p.getNombreEmpleado()};
+                Object[] fila = {p.getId(),p.getCodigo(),p.getFecha(),p.getDevolucion(),p.getDevuelto(),p.getId_libro(),p.getNombreLibro(),p.getId_cliente(),p.getNombreCliente(),p.getId_empleado(),p.getNombreEmpleado()};
                 tabla.addRow(fila);
             }
         } catch (Exception e) {
@@ -716,25 +584,21 @@ public class FormPrestamo extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarEmpleado;
     private javax.swing.JButton btnBuscarLibro;
     private javax.swing.JButton btnBuscarPrestamo;
-    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnPrestar;
     private javax.swing.JButton btnRecibir;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbBuscarPrestamo;
-    private javax.swing.JCheckBox cbDevuelto;
     private javax.swing.JTextField edtBuscarCliente;
     private javax.swing.JTextField edtBuscarEmpleado;
     private javax.swing.JTextField edtBuscarLibro;
     private javax.swing.JTextField edtBuscarPrestamo;
     private javax.swing.JTextField edtCodPrestamo;
-    private javax.swing.JTextField edtFechaDev;
-    private javax.swing.JTextField edtFechaEntrega;
-    private javax.swing.JTextField edtIdPrestamo;
     private javax.swing.JTextField edtNombreCliente;
     private javax.swing.JTextField edtNombreEmpleado;
     private javax.swing.JTextField edtNombreLibro;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -742,10 +606,9 @@ public class FormPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
