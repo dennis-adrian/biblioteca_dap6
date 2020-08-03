@@ -222,10 +222,10 @@ public class Libro extends Conexion{
     
         LinkedList<Libro> libros = new LinkedList<Libro>();
         try {
-            String sql = "select l.id,l.nombre,l.isbn,l.anio_publicacion,l.id_autor,a.nombre,l.id_genero,g.nombre,s.cantidad "
+            /*String sql = "select l.id,l.nombre,l.isbn,l.anio_publicacion,l.id_autor,a.nombre,l.id_genero,g.nombre,s.cantidad "
                     + "from libro l inner join autor a on(l.id_autor = a.id) inner join genero g on (g.id = l.id_genero) inner join stock s on (s.id_libro = l.id)"
-                    + "where l.nombre like ?";
-            //String sql = "select * from testview where nombre like ?";
+                    + "where l.nombre like ?";*/
+            String sql = "select * from vw_libros_full where nombre_libro like ?";
             this.st = this.cnx.prepareStatement(sql);
             this.st.setString(1, "%"+criterio+"%");
             ResultSet rs = this.st.executeQuery();
