@@ -208,6 +208,21 @@ BEGIN
     WHERE id_libro = id_libro_devuelto;
 END;
 /
+CREATE OR REPLACE TRIGGER TRG_CREATE_STOCK
+AFTER INSERT
+    ON libro
+    FOR EACH ROW
+BEGIN
+    INSERT INTO stock
+    ( cantidad,
+    id_libro,
+    creado_en)
+    VALUES
+    ( 0,
+    :new.id,
+    SYSDATE);
+END;
+/
 -- ===================
 -- Stored Procedures
 -- ===================
@@ -293,6 +308,36 @@ BEGIN
     COMMIT;
 END;
 /
+CREATE OR REPLACE PROCEDURE sp_prestamo_por_apellido_fecha_select(
+    nombre IN cliente.nombre%TYPE,
+    fecha_inicial prestamo.fecha%TYPE,
+    fecha_final prestamo.devolucion%TYPE
+)
+AS
+    c1 SYS_REFCURSOR; 
+BEGIN
+    open c1 for
+    select * from vw_prestamo_cliente_empleado where nombre_cliente LIKE UPPER('%' || nombre || '%') AND fecha >= fecha_inicial AND fecha <= fecha_final ORDER BY nombre_cliente;
+    DBMS_SQL.RETURN_RESULT(c1);
+END;
+/
+CREATE OR REPLACE PROCEDURE sp_prestamo_por_libro_fecha_select(
+    nombre IN libro.nombre%TYPE,
+    fecha_inicial prestamo.fecha%TYPE,
+    fecha_final prestamo.fecha%TYPE
+)
+AS
+    c1 SYS_REFCURSOR; 
+BEGIN
+    open c1 for
+    select * from vw_prestamo_cliente_empleado where nombre_libro LIKE UPPER('%' || nombre || '%') AND fecha >= fecha_inicial AND fecha <= fecha_final ORDER BY nombre_cliente;
+    DBMS_SQL.RETURN_RESULT(c1);
+END;
+/
+
+exec sp_prestamo_por_apellido_fecha_select('', '20-JUL-2020', '03-AUG-2020');
+exec sp_prestamo_por_libro_fecha_select('don', '20-JUL-2020', '03-AUG-2020');
+
 -- ===================
 -- VISTAS
 -- ===================
@@ -326,14 +371,14 @@ ORDER BY l.nombre ASC;
 CREATE OR REPLACE VIEW vw_prestamo_cliente_empleado AS
 SELECT p.id,
     p.codigo,
-    c.nombre as nombre_cliente,
-    c.apellido,
+    UPPER(c.nombre) as nombre_cliente,
+    UPPER(c.apellido) as apellido_cliente,
     p.fecha,
-    l.nombre as nombre_libro,
+    UPPER(l.nombre) as nombre_libro,
     p.devolucion,
     p.devuelto,
-    e.nombre as nombre_empleado,
-    e.apellido as apellido_empleado
+    UPPER(e.nombre) as nombre_empleado,
+    UPPER(e.apellido) as apellido_empleado
 FROM (
         prestamo p
         JOIN libro l ON (p.id_libro = l.id)
