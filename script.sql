@@ -30,6 +30,8 @@ grant select, insert, update, delete on stock to rolprogramador;
 grant select, insert, update, delete on autor to rolprogramador;
 grant select, insert, update, delete on genero to rolprogramador;
 grant select, insert, update, delete on pais_autor to rolprogramador;
+grant create profile to rolprogramador;
+grant create, alter user to rolprogramador;
 
 
 create role rolusuario;
@@ -68,6 +70,32 @@ grant rolusuario to user1;
 
 create user user2 identified by user2020 default tablespace tsbiblioteca temporary tablespace tstmpbiblioteca quota unlimited on tsbiblioteca;
 grant rolusuario to user2;
+-- ===================
+-- Crear Perfiles
+-- ===================
+CREATE PROFILE perfprogramador limit
+FAILED_LOGIN_ATTEMPTS 3
+SESSIONS_PER_USER 3
+CONNECT_TIME 600
+PASSWORD_LOCK_TIME (1/24)/60
+PASSWORD_LIFE_TIME 30
+PASSWORD_GRACE_TIME 3; 
+
+ALTER USER progdennisadrian PROFILE perfprogramador;
+ALTER USER progpedromendoza PROFILE perfprogramador;
+
+CREATE PROFILE perfusuario limit
+FAILED_LOGIN_ATTEMPTS 5
+SESSIONS_PER_USER 1
+CONNECT_TIME 480
+PASSWORD_LOCK_TIME (1/24)/60
+PASSWORD_LIFE_TIME 180
+PASSWORD_GRACE_TIME 5;
+
+ALTER USER admin1 PROFILE perfusuario;
+ALTER USER user1 PROFILE perfusuario;
+ALTER USER user2 PROFILE perfusuario;
+
 -- ===================
 -- Crear Tablas
 -- ===================
