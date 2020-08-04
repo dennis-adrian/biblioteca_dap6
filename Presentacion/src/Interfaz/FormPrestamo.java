@@ -90,8 +90,6 @@ public class FormPrestamo extends javax.swing.JFrame {
 
         jLabel8.setText("Codigo:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 301, -1, -1));
-
-        edtCodPrestamo.setEditable(false);
         getContentPane().add(edtCodPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 298, 162, -1));
 
         jLabel10.setText("Cliente:");

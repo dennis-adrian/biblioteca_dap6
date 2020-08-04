@@ -46,9 +46,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="edtCodPrestamo">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="185" y="298" width="162" height="-1"/>
