@@ -5,7 +5,9 @@
  */
 package Interfaz;
 
+import Clases.Autor;
 import Conexion.Conexion;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
@@ -13,6 +15,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -36,19 +39,35 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
+        btnReporteLibros = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
         btnLibros = new javax.swing.JButton();
         btnPrestamos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MENU");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Californian FB", 1, 36)); // NOI18N
+        jLabel6.setText("Reporte Libros");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 490, -1, -1));
+
+        btnReporteLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf.png"))); // NOI18N
+        btnReporteLibros.setBorderPainted(false);
+        btnReporteLibros.setContentAreaFilled(false);
+        btnReporteLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteLibrosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReporteLibros, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
         btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf.png"))); // NOI18N
         btnReportes.setBorderPainted(false);
@@ -58,7 +77,7 @@ public class Menu extends javax.swing.JFrame {
                 btnReportesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
+        getContentPane().add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, -1));
 
         btnLibros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/libro (2).png"))); // NOI18N
         btnLibros.setBorderPainted(false);
@@ -92,13 +111,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel4.setText("Biblioteca");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo_transparent.png"))); // NOI18N
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 1140, 700));
-
         jLabel5.setFont(new java.awt.Font("Californian FB", 1, 36)); // NOI18N
         jLabel5.setText("Reporte Prestamos");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo_transparent.png"))); // NOI18N
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 1140, 700));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu.jpeg"))); // NOI18N
         fondo.setText("jLabel1");
@@ -119,9 +138,48 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrestamosActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        // TODO add your handling code here:
-      
+        try {
+           
+            Conexion con = new Conexion();
+            Connection conn = (Connection) con.getConexion();
+            JasperReport reporte = null;
+            String path = "src\\Reportes\\ReportePrestamos.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnReportesActionPerformed
+
+    private void btnReporteLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteLibrosActionPerformed
+        // TODO add your handling code here:
+        try {
+           
+            Conexion con = new Conexion();
+            Connection conn = (Connection) con.getConexion();
+            JasperReport reporte = null;
+            String path = "src\\Reportes\\ReporteLibros.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteLibrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +219,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLibros;
     private javax.swing.JButton btnPrestamos;
+    private javax.swing.JButton btnReporteLibros;
     private javax.swing.JButton btnReportes;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
@@ -168,5 +227,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

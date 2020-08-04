@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteLibros" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a42c308e-c261-41ea-a000-e8a382268497">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from vw_libros_full]]>
+	</queryString>
+	<field name="ID" class="java.math.BigDecimal"/>
+	<field name="NOMBRE_LIBRO" class="java.lang.String"/>
+	<field name="ISBN" class="java.lang.String"/>
+	<field name="PUBLICACION" class="java.math.BigDecimal"/>
+	<field name="ID_AUTOR" class="java.math.BigDecimal"/>
+	<field name="NOMBRE_AUTOR" class="java.lang.String"/>
+	<field name="ID_GENERO" class="java.math.BigDecimal"/>
+	<field name="GENERO" class="java.lang.String"/>
+	<field name="CANTIDAD" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="125" y="0" width="322" height="53" uuid="187041a8-5d7b-4585-9f5a-dfc49b96dbe6"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Reporte de Libros]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="472" y="0" width="100" height="20" uuid="c6867c54-5725-4001-b04d-b10ba3956944"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="64" height="64" uuid="7895238d-266f-409a-bdb1-21c819f9ee9c"/>
+				<imageExpression><![CDATA["C:\\Users\\Megashi\\Documents\\NetBeansProjects\\Biblioteca\\Presentacion\\src\\img\\libro (2).png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="24" height="20" uuid="0fa2e577-b4aa-4930-9d03-7d9ca3b84887"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="0" width="100" height="20" uuid="540700aa-2887-4311-8d11-4561b31494af"/>
+				<text><![CDATA[NOMBRE_LIBRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="43" height="20" uuid="72590b76-0a71-4e6c-b7da-70c88025a060"/>
+				<text><![CDATA[ISBN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="203" y="0" width="64" height="20" uuid="93527013-f9d8-4a3c-9c7a-57880fffb782"/>
+				<text><![CDATA[PUBLICACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="16" height="20" uuid="4dca0b7a-b673-4673-ae43-0f2d8e8b606f"/>
+				<text><![CDATA[ID_AUTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="0" width="100" height="20" uuid="67d11b62-2c7d-44c7-b541-74e592417fca"/>
+				<text><![CDATA[NOMBRE_AUTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="0" width="17" height="20" uuid="8c6ca994-e63c-4e7d-ba0f-4f1eaf6bd213"/>
+				<text><![CDATA[ID_GENERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="100" height="20" uuid="372969bb-faa9-424b-94f9-613e49b2f75c"/>
+				<text><![CDATA[GENERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="72" height="20" uuid="70ec82bf-7849-42e2-a232-af18d6268d0c"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="24" height="20" uuid="ac0c4824-28ce-4de7-af14-031fd283635e"/>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="0" width="136" height="20" uuid="fa7da9ae-e63c-4179-b148-097e438933e3"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_LIBRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="42" height="20" uuid="781beace-5286-430b-a3d3-45e240441f9f"/>
+				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="0" width="64" height="20" uuid="bcdc83ca-e320-4646-9da5-3ff6154d3834"/>
+				<textFieldExpression><![CDATA[$F{PUBLICACION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="0" width="16" height="20" uuid="d00fd682-5a24-412b-8dcf-fbdb952fae22"/>
+				<textFieldExpression><![CDATA[$F{ID_AUTOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="0" width="100" height="20" uuid="770db43e-cfb1-45a3-8981-871a51520e83"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_AUTOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="0" width="17" height="20" uuid="95ed9da3-2691-4db6-bc27-779b6392537e"/>
+				<textFieldExpression><![CDATA[$F{ID_GENERO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20" uuid="df32e19a-5e76-4dc0-9af3-a17bde99adf3"/>
+				<textFieldExpression><![CDATA[$F{GENERO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="0" width="72" height="20" uuid="9f39cafa-a750-4f38-aae1-d53fa88a7f36"/>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="283" y="0" width="40" height="20" uuid="dd15ef1d-ef99-47a5-9d50-edb9d485276b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="0" width="80" height="20" uuid="f09563ee-8191-4300-a2ea-3c0f99fc934a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

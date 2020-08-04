@@ -7,44 +7,50 @@ package Conexion;
 
 import java.sql.*;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Megashi
  */
 public class Conexion {
+
     protected Connection cnx;
     protected PreparedStatement st;
     public ResultSet rs;
-    
-    public Conexion(){
-    String urlconnection = "jdbc:oracle:thin:@localhost:1521/BIBLIOTECABD";
+    private Connection con = null;
+
+    public Conexion() {
+        String urlconnection = "jdbc:oracle:thin:@localhost:1521/BIBLIOTECABD";
         Properties propiedades = new Properties();
         propiedades.setProperty("user", "dbabiblioteca");
         propiedades.setProperty("password", "biblioteca2020");
-        
+
         try {
-            this.cnx = DriverManager.getConnection(urlconnection ,propiedades);
+            this.cnx = DriverManager.getConnection(urlconnection, propiedades);
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
     }
-    
-    public Connection Conexion(){
-    String urlconnection = "jdbc:oracle:thin:@localhost:1521/BIBLIOTECABD";
-        Properties propiedades = new Properties();
-        propiedades.setProperty("user", "dbabiblioteca");
-        propiedades.setProperty("password", "biblioteca2020");
-        
+
+    public Connection getConexion() throws ClassNotFoundException {
         try {
-            this.cnx = DriverManager.getConnection(urlconnection ,propiedades);
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
+            String urlconnection = "jdbc:oracle:thin:@localhost:1521/BIBLIOTECABD";
+            Properties propiedades = new Properties();
+            propiedades.setProperty("user", "dbabiblioteca");
+            propiedades.setProperty("password", "biblioteca2020");
+            //Class.forName ("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection(urlconnection, propiedades);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return cnx;
+            return con;
     }
-    
-    public boolean seleccionar(String sql){
+
+    public boolean seleccionar(String sql) {
         try {
             this.st = this.cnx.prepareStatement(sql);
             this.rs = this.st.executeQuery();
@@ -53,28 +59,28 @@ public class Conexion {
             return false;
         }
     }
-    
-    public boolean ejecutar(String sql){
+
+    public boolean ejecutar(String sql) {
         try {
             this.st = this.cnx.prepareStatement(sql);
 
-            if (this.st.executeUpdate()>0) {//insert,delete,update
+            if (this.st.executeUpdate() > 0) {//insert,delete,update
                 return true;
             }
             return true;
         } catch (Exception e) {
             return false;
         }
-    } 
-    
-    public boolean ejecutar(){
+    }
+
+    public boolean ejecutar() {
         try {
-            if (this.st.executeUpdate()>0) {//insert,delete,update
+            if (this.st.executeUpdate() > 0) {//insert,delete,update
                 return true;
             }
             return true;
         } catch (Exception e) {
             return false;
         }
-    } 
+    }
 }
